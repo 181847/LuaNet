@@ -194,11 +194,17 @@ int lua_accept(lua_State * L)
 		auto * pSocket =
 			reinterpret_cast<SOCKET *>(lua_newuserdata(L, sizeof(SOCKET)));
 		*pSocket = remoteSocket;
+		// set metatable
+		luaL_getmetatable(L, "Lua.Socket.Socket");
+		lua_setmetatable(L, -2);
 
 		// create a new Address in the stack, and assigned it with the accepted address.
 		auto * pAddr =
 			reinterpret_cast<sockaddr*>(lua_newuserdata(L, sizeof(SOCKADDR_IN)));
 		*pAddr = remoteAddr;
+		// setmetatable
+		luaL_getmetatable(L, "Lua.Socket.Address");
+		lua_setmetatable(L, -2);
 
 		// return the remote socket and address.
 		return 2;
@@ -232,7 +238,7 @@ int lua_send(lua_State * L)
 	int sLen = send(*pSocket, 
 		reinterpret_cast<const char *>(pNetData->Data), pNetData->Length, 0);
 
-	if (sLen = SOCKET_ERROR)
+	if (sLen == SOCKET_ERROR)
 	{
 		return doWhenFailed(L, "Send data failed");
 	}
@@ -249,15 +255,17 @@ int lua_recv(lua_State * L)
 	auto * pNetData = CHECK_USERDATA_NETDATA_INDEX(L, 2);
 
 	int rLen = recv(*pSocket, 
-		reinterpret_cast<char *>(pNetData->Data), pNetData->Length, 0);
+		reinterpret_cast<char *>(pNetData->Data), pNetData->Length - 1, 0);
 
-	if (rLen = SOCKET_ERROR)
+	if (rLen == SOCKET_ERROR)
 	{
 		return doWhenFailed(L, "Recieve data failed");
 	}
 	else
 	{
 		lua_pushinteger(L, rLen);
+
+		pNetData->Data[rLen] = 0;
 		return 1;
 	}
 }
@@ -269,7 +277,7 @@ int lua_newNetData(lua_State * L)
 
 
 	// if pass in a string, then use the string to initialize the NetData
-	if (lua_isstring(L, 1))
+	if (LUA_TSTRING == lua_type(L, 1))
 	{
 		// use the string to create the netData
 		pbuffer = lua_tolstring(L, 1, &length);
@@ -304,6 +312,13 @@ int lua_sizeOfNetData(lua_State * L)
 {
 	auto * pNetData = CHECK_USERDATA_NETDATA(L);
 	lua_pushinteger(L, pNetData->Length);
+	return 1;
+}
+
+int lua_NetDataToString(lua_State * L)
+{
+	auto * pNetData = CHECK_USERDATA_NETDATA(L);
+	lua_pushstring(L, reinterpret_cast<const char *>(pNetData->Data));
 	return 1;
 }
 
