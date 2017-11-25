@@ -200,6 +200,25 @@ int lua_accept(lua_State * L)
 	}
 }
 
+int lua_connect(lua_State * L)
+{
+	auto * pSocket			= CHECK_USERDATA_SOCKET_INDEX	(L, 1);
+	auto * pTargetAddress	= CHECK_USERDATA_ADDRESS_INDEX	(L, 2);
+
+	int error = connect(*pSocket, 
+		reinterpret_cast<sockaddr*>(pTargetAddress), sizeof(SOCKADDR_IN));
+
+	if (error)
+	{
+		return doWhenFailed(L, "connection failed");
+	}
+	else
+	{
+		lua_pushboolean(L, true);
+		return 1;
+	}
+}
+
 int doWhenFailed(lua_State * L, const char * message)
 {
 

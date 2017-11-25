@@ -63,7 +63,10 @@ static int lua_listen		(lua_State * L);
 // accept a socket from a client, be aware that this operation 
 // will block the process, be sure that a client will connect to it,
 // or you have to close the Application to stop waiting.
-static int lua_accept(lua_State * L);
+static int lua_accept		(lua_State * L);
+
+// connecte to a server.
+static int lua_connect		(lua_State * L);
 
 
 
@@ -81,5 +84,6 @@ static const struct luaL_Reg LuaSocketLib[] =
 	{ "bind",			lua_bind },
 	{ "listen",			lua_listen },
 	{ "accept",			lua_accept },
+	{ "connect",		lua_connect },
 	{NULL, NULL}
 };
