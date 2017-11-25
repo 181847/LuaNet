@@ -113,6 +113,7 @@ static const struct luaL_Reg LuaSocketLib[] =
 
 static const struct luaL_Reg LuaNetDataFunctions[] =
 {
-	{ "size", lua_sizeOfNetData},
-	{ NULL, NULL }
+	{ "size",			lua_sizeOfNetData},
+	{ "toString",		lua_NetDataToString },
+	{ NULL,				NULL }
 };
