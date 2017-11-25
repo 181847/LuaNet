@@ -8,9 +8,18 @@ extern "C"
 #endif
 int LUASOCKET_API luaopen_LuaSocket(lua_State * L)
 {
-	luaL_newmetatable(L, "Lua.Socket");
+
+	// this for the socket object
+	luaL_newmetatable(L, "Lua.Socket.Socket");
 	lua_pushvalue(L, -1);
 	lua_setfield(L, -2, "__index");
+
+	// this for the addr_in object
+	luaL_newmetatable(L, "Lua.Socket.Address");
+	lua_pushvalue(L, -1);
+	lua_setfield(L, -2, "__index");
+
+
 	luaL_newlib(L, LuaSocketLib);
 	return 1;
 }
@@ -53,7 +62,7 @@ int lua_Cleanup(lua_State * L)
 int lua_newSocket(lua_State * L)
 {
 	auto * pSocket = 
-		reinterpret_cast<SOCKET *>(lua_newuserdata(L, sizeof(SOCKET)));
+		reinterpret_cast<SOCKET *>(lua_newuserdata(L, sizeof(SOCKET)));	
 
 	SOCKET& sock = *pSocket;
 
@@ -69,9 +78,28 @@ int lua_newSocket(lua_State * L)
 	}
 	else
 	{
-		lua_pushboolean(L, true);
+		luaL_getmetatable(L, "Lua.Socket");
+		lua_setmetatable(L, -2);
 		return 1;
 	}
+}
+
+int lua_newAddress(lua_State * L)
+{
+	// by default us AF_INET as the famaliy
+	const int		af			= AF_INET;
+	const char *	ipAddress	= luaL_checkstring(L, 1);
+	const int		port		= static_cast<int>(luaL_checkinteger(L, 2));
+
+	auto * pAddr = 
+		reinterpret_cast<SOCKADDR_IN*>(lua_newuserdata(L, sizeof(SOCKADDR_IN)));
+
+	pAddr->sin_family = af;
+	pAddr->sin_port = port;
+	pAddr->sin_addr = 
+
+
+	return 0;
 }
 
 int doWhenFailed(lua_State * L, const char * message)
