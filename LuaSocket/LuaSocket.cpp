@@ -166,6 +166,40 @@ int lua_listen(lua_State * L)
 	}
 }
 
+int lua_accept(lua_State * L)
+{
+	// be aware that this function will be block inside here,
+	// if no client connect to it.
+
+	auto * pSocket = CHECK_USERDATA_SOCKET(L);
+
+	sockaddr remoteAddr;
+
+	int addrLength = sizeof(remoteAddr);
+
+	auto remoteSocket = accept(*pSocket, &remoteAddr, &addrLength);
+
+	if (remoteSocket == INVALID_SOCKET)
+	{
+		return doWhenFailed(L, "Accepted a Invalid socket.");
+	}
+	else
+	{
+		// create a new userdata in the stack, and assigned it with the accepted socket.
+		auto * pSocket =
+			reinterpret_cast<SOCKET *>(lua_newuserdata(L, sizeof(SOCKET)));
+		*pSocket = remoteSocket;
+
+		// create a new Address in the stack, and assigned it with the accepted address.
+		auto * pAddr =
+			reinterpret_cast<sockaddr*>(lua_newuserdata(L, sizeof(SOCKADDR_IN)));
+		*pAddr = remoteAddr;
+
+		// return the remote socket and address.
+		return 2;
+	}
+}
+
 int doWhenFailed(lua_State * L, const char * message)
 {
 
