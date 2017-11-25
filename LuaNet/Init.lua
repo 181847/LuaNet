@@ -43,3 +43,7 @@ luaSock = require("LuaSocket")
 print('try to startup...')
 assert(luaSock.Startup(2, 2))
 print('startup success')
+
+print('try to cleanup...')
+assert(luaSock.Cleanup())
+print('cleanup success')
