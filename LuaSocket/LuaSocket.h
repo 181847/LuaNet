@@ -24,13 +24,16 @@ extern "C"
 #endif
 
 // to call WSAStartup()
-static int lua_Startup(lua_State * L);
+static int lua_Startup		(lua_State * L);
 
 // to call WSACleanup()
-static int lua_Cleanup(lua_State * L);
+static int lua_Cleanup		(lua_State * L);
 
 // create a socket
-static int lua_newSocket(lua_State * L);
+static int lua_newSocket	(lua_State * L);
+
+// create a address
+static int lua_newAddress	(lua_State * L);
 
 
 // THIS FUNCTION IS NOT IN THE LIBRARY,
@@ -41,5 +44,6 @@ static const struct luaL_Reg LuaSocketLib[] =
 {
 	{"Startup", lua_Startup},
 	{"Cleanup", lua_Cleanup},
+	{"newSocket", lua_newSocket},
 	{NULL, NULL}
 };
