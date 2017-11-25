@@ -78,7 +78,7 @@ int lua_newSocket(lua_State * L)
 	}
 	else
 	{
-		luaL_getmetatable(L, "Lua.Socket");
+		luaL_getmetatable(L, "Lua.Socket.Socket");
 		lua_setmetatable(L, -2);
 		return 1;
 	}
@@ -96,7 +96,21 @@ int lua_newAddress(lua_State * L)
 
 	pAddr->sin_family = af;
 	pAddr->sin_port = port;
-	pAddr->sin_addr = 
+
+	// if failed, error will be negative
+	int error = inet_pton(af, ipAddress, 
+		reinterpret_cast<void*>(&pAddr->sin_addr));
+
+	if (error < 0)
+	{
+		return doWhenFailed(L, "Address creation error: Ip address illegal!");
+	}
+	else
+	{
+		luaL_getmetatable(L, "Lua.Socket.Address");
+		lua_setmetatable(L, -2);
+		return 1;
+	}
 
 
 	return 0;
