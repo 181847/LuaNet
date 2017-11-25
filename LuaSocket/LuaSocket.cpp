@@ -84,6 +84,21 @@ int lua_newSocket(lua_State * L)
 	}
 }
 
+int lua_closeSocket(lua_State * L)
+{
+	auto * pSocket = CHECK_USERDATA_SOCKET(L);
+	int error = closesocket(*pSocket);
+	if (error)
+	{
+		return doWhenFailed(L, "socket close error");
+	}
+	else
+	{
+		lua_pushboolean(L, true);
+		return 1;
+	}
+}
+
 int lua_newAddress(lua_State * L)
 {
 	// by default us AF_INET as the famaliy
@@ -114,6 +129,41 @@ int lua_newAddress(lua_State * L)
 
 
 	return 0;
+}
+
+int lua_bind(lua_State * L)
+{
+	auto * pSocket	= CHECK_USERDATA_SOCKET_INDEX(L, 1);
+	auto * pAddress = CHECK_USERDATA_ADDRESS_INDEX(L, 2);
+
+	int error = bind(*pSocket, reinterpret_cast<sockaddr*>(pAddress), sizeof(SOCKADDR_IN));
+	
+	if (error)
+	{
+		return doWhenFailed(L, "Bind Failed");
+	}
+	else
+	{
+		lua_pushboolean(L, true);
+		return 1;
+	}
+}
+
+int lua_listen(lua_State * L)
+{
+	auto * pSocket = CHECK_USERDATA_SOCKET(L);
+	int maxNum = static_cast<int>(luaL_checkinteger(L, 2));
+
+	if (listen(*pSocket, maxNum))
+	{
+		// if error happend
+		return doWhenFailed(L, "transforming socket state to listening failed");
+	}
+	else
+	{
+		lua_pushboolean(L, true);
+		return 1;
+	}
 }
 
 int doWhenFailed(lua_State * L, const char * message)
