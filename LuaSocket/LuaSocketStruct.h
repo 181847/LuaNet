@@ -13,12 +13,15 @@
 
 static const UINT MaxNetDataLength = 1500;
 
+
 struct NetData
 {
-	BYTE Length;
+	UINT Length;
 	
 	BYTE Data[1];
 };
+
+#define LENGTH_OF_NETDATA(byteSize) (sizeof(NetData::Length) + byteSize)
 
 typedef SOCKET LuaSocket;
 
