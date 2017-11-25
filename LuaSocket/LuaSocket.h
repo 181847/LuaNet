@@ -11,7 +11,6 @@
 #define LUASOCKET_API DLL_IMPORT_API
 #endif
 
-
 #ifdef __cplusplus
 extern "C"
 {
@@ -38,6 +37,14 @@ extern "C"
 // get address by userdata
 #define CHECK_USERDATA_ADDRESS_INDEX(L, index) \
 	(reinterpret_cast<SOCKADDR_IN*>(luaL_checkudata(L, index, "Lua.Socket.Address")))
+
+// get netData by userdata
+#define CHECK_USERDATA_NETDATA(L)\
+	(reinterpret_cast<NetData*>(luaL_checkudata(L, 1, "Lua.Socket.NetData")))
+
+// get netData by userdata
+#define CHECK_USERDATA_NETDATA_INDEX(L, index)\
+	(reinterpret_cast<NetData*>(luaL_checkudata(L, index, "Lua.Socket.NetData")))
 
 // to call WSAStartup()
 static int lua_Startup		(lua_State * L);
@@ -68,9 +75,22 @@ static int lua_accept		(lua_State * L);
 // connecte to a server.
 static int lua_connect		(lua_State * L);
 
+// send data.
+static int lua_send			(lua_State * L);
 
+// receive data
+static int lua_recv			(lua_State * L);
 
-// THIS FUNCTION IS NOT IN THE LIBRARY,
+// *********************************  NetData ********************************8
+// create a NetData
+static int lua_newNetData		(lua_State * L);
+
+// return the size of NetData
+static int lua_sizeOfNetData	(lua_State * L);
+
+static int lua_NetDataToString	(lua_State * L);
+
+// THIS FUNCTION IS NOT IN THE LUA,
 // IT IS JUST USED IN THE C.
 static int doWhenFailed(lua_State *L, const char * message);
 
@@ -81,9 +101,18 @@ static const struct luaL_Reg LuaSocketLib[] =
 	{ "newSocket",		lua_newSocket},
 	{ "closeSocket",	lua_closeSocket },
 	{ "newAddress",		lua_newAddress},
+	{ "newNetData",		lua_newNetData },
 	{ "bind",			lua_bind },
 	{ "listen",			lua_listen },
 	{ "accept",			lua_accept },
 	{ "connect",		lua_connect },
-	{NULL, NULL}
+	{ "send",			lua_send },
+	{ "recv",			lua_recv},
+	{ NULL,				NULL}
+};
+
+static const struct luaL_Reg LuaNetDataFunctions[] =
+{
+	{ "size", lua_sizeOfNetData},
+	{ NULL, NULL }
 };

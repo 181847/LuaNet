@@ -19,6 +19,11 @@ int LUASOCKET_API luaopen_LuaSocket(lua_State * L)
 	lua_pushvalue(L, -1);
 	lua_setfield(L, -2, "__index");
 
+	// this for the NetData
+	luaL_newmetatable(L, "Lua.Socket.NetData");
+	lua_pushvalue(L, -1);
+	lua_setfield(L, -2, "__index");
+	luaL_setfuncs(L, LuaNetDataFunctions, 0);
 
 	luaL_newlib(L, LuaSocketLib);
 	return 1;
@@ -217,6 +222,89 @@ int lua_connect(lua_State * L)
 		lua_pushboolean(L, true);
 		return 1;
 	}
+}
+
+int lua_send(lua_State * L)
+{
+	auto * pSocket	= CHECK_USERDATA_SOCKET_INDEX	(L, 1);
+	auto * pNetData = CHECK_USERDATA_NETDATA_INDEX	(L, 2);
+
+	int sLen = send(*pSocket, 
+		reinterpret_cast<const char *>(pNetData->Data), pNetData->Length, 0);
+
+	if (sLen = SOCKET_ERROR)
+	{
+		return doWhenFailed(L, "Send data failed");
+	}
+	else
+	{
+		lua_pushinteger(L, sLen);
+		return 1;
+	}
+}
+
+int lua_recv(lua_State * L)
+{
+	auto * pSocket = CHECK_USERDATA_SOCKET_INDEX(L, 1);
+	auto * pNetData = CHECK_USERDATA_NETDATA_INDEX(L, 2);
+
+	int rLen = recv(*pSocket, 
+		reinterpret_cast<char *>(pNetData->Data), pNetData->Length, 0);
+
+	if (rLen = SOCKET_ERROR)
+	{
+		return doWhenFailed(L, "Recieve data failed");
+	}
+	else
+	{
+		lua_pushinteger(L, rLen);
+		return 1;
+	}
+}
+
+int lua_newNetData(lua_State * L)
+{
+	size_t length = 0;
+	const char * pbuffer = nullptr;
+
+
+	// if pass in a string, then use the string to initialize the NetData
+	if (lua_isstring(L, 1))
+	{
+		// use the string to create the netData
+		pbuffer = lua_tolstring(L, 1, &length);
+	}
+	else
+	{
+		length = static_cast<size_t>(luaL_checkinteger(L, 1));
+	}
+	
+	if (length <= 0)
+	{
+		return doWhenFailed(L, "the netData must be greater than 1 byte");
+	}
+
+	auto * pNetData =
+		reinterpret_cast<NetData*>(lua_newuserdata(L, LENGTH_OF_NETDATA(length)));
+	pNetData->Length = length;
+
+	// initialization
+	if (pbuffer)
+	{
+		memcpy_s((void*)pNetData->Data, length, (const void*)pbuffer, length);
+	}
+
+	luaL_getmetatable(L, "Lua.Socket.NetData");
+	lua_setmetatable(L, -2);
+
+	return 1;
+}
+
+int lua_sizeOfNetData(lua_State * L)
+{
+	auto * pNetData = CHECK_USERDATA_NETDATA(L);
+	lua_pushinteger(L, pNetData->Length);
+	return 1;
 }
 
 int doWhenFailed(lua_State * L, const char * message)
