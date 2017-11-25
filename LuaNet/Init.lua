@@ -40,6 +40,15 @@ end
 
 luaSock = require("LuaSocket")
 
+luaSock.Family = {TCP = 2}
+luaSock.Type = {Stream = 1}
+luaSock.Protocol = {Unknown = 0}
+
+function luaSock.TCPSocket()
+    return luaSock.newSocket(luaSock.Family.TCP, luaSock.Type.Stream, luaSock.Protocol.Unknown)
+end
+
+
 print('Testing...')
 print('try to startup...')
 assert(luaSock.Startup(2, 2))
