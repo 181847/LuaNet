@@ -45,5 +45,6 @@ static const struct luaL_Reg LuaSocketLib[] =
 	{"Startup", lua_Startup},
 	{"Cleanup", lua_Cleanup},
 	{"newSocket", lua_newSocket},
+	{"newAddress", lua_newAddress},
 	{NULL, NULL}
 };
