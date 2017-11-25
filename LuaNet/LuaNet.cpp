@@ -12,7 +12,7 @@ int main()
 
 	pLuaInter->DoFile("Init.lua");
 
-	printf("%d %d %d", sizeof(unsigned char), sizeof(unsigned short), sizeof(unsigned long));
+	//printf("%d %d %d", sizeof(unsigned char), sizeof(unsigned short), sizeof(unsigned long));
 
 	pLuaInter->Run();
 
