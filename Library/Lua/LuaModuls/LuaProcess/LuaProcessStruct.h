@@ -1,6 +1,6 @@
 #pragma once
-#include "../Library/MyTools/LuaTools.h"
-#include "../Library/MyTools/UsefulDataType.h"
+#include "../../../MyTools/LuaTools.h"
+#include "../../../MyTools/UsefulDataType.h"
 #include <Windows.h>
 
 namespace Lua
