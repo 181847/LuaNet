@@ -24,15 +24,21 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\Library\Lua\LuaModuls\LuaProcess\LuaProcess.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\Lua\LuaModuls\LuaProcess\LuaProcessStruct.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="LuaProcess.cpp">
+    <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="dllmain.cpp">
+    <ClCompile Include="..\Library\Lua\LuaModuls\LuaProcess\LuaProcess.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
