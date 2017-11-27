@@ -24,82 +24,82 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lapi.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lapi.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lauxlib.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lauxlib.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lcode.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lcode.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lctype.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lctype.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\ldebug.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldebug.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\ldo.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldo.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lfunc.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lfunc.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lgc.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lgc.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\llex.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\llex.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\llimits.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\llimits.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lmem.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lmem.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lobject.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lobject.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lopcodes.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lopcodes.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lparser.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lparser.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lprefix.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lprefix.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lstate.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstate.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lstring.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstring.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\ltable.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltable.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\ltm.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltm.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lua.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lua.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lua.hpp">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lua.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\luaconf.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\luaconf.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lualib.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lualib.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lundump.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lundump.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lvm.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lvm.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lzio.h">
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lzio.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -110,103 +110,103 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lapi.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lapi.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lauxlib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lauxlib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lbaselib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lbaselib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lbitlib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lbitlib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lcode.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lcode.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lcorolib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lcorolib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lctype.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lctype.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ldblib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldblib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ldebug.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldebug.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ldo.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldo.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ldump.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldump.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lfunc.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lfunc.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lgc.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lgc.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\linit.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\linit.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\liolib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\liolib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\llex.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\llex.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lmathlib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lmathlib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lmem.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lmem.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\loadlib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\loadlib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lobject.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lobject.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lopcodes.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lopcodes.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\loslib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\loslib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lparser.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lparser.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lstate.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstate.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lstring.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstring.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lstrlib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstrlib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ltable.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltable.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ltablib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltablib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ltm.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltm.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lundump.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lundump.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lutf8lib.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lutf8lib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lvm.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lvm.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lzio.c">
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lzio.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

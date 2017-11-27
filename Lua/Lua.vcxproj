@@ -87,7 +87,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;LUA_BUILD_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LUA_EXPORTS;LUA_BUILD_AS_DLL;THREAD_SAFTY;USE_MUTEX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -149,69 +149,69 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lapi.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lauxlib.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lcode.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lctype.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\ldebug.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\ldo.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lfunc.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lgc.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\llex.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\llimits.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lmem.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lobject.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lopcodes.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lparser.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lprefix.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lstate.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lstring.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\ltable.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\ltm.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lua.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lua.hpp" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\luaconf.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lualib.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lundump.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lvm.h" />
-    <ClInclude Include="..\Library\Lua\Lua-5.3.4\src\lzio.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lapi.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lauxlib.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lcode.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lctype.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldebug.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldo.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lfunc.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lgc.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\llex.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\llimits.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lmem.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lobject.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lopcodes.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lparser.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lprefix.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstate.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstring.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltable.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltm.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lua.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lua.hpp" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\luaconf.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lualib.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lundump.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lvm.h" />
+    <ClInclude Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lzio.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lapi.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lauxlib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lbaselib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lbitlib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lcode.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lcorolib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lctype.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ldblib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ldebug.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ldo.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ldump.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lfunc.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lgc.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\linit.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\liolib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\llex.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lmathlib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lmem.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\loadlib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lobject.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lopcodes.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\loslib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lparser.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lstate.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lstring.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lstrlib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ltable.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ltablib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\ltm.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lundump.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lutf8lib.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lvm.c" />
-    <ClCompile Include="..\Library\Lua\Lua-5.3.4\src\lzio.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lapi.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lauxlib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lbaselib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lbitlib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lcode.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lcorolib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lctype.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldblib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldebug.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldo.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ldump.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lfunc.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lgc.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\linit.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\liolib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\llex.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lmathlib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lmem.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\loadlib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lobject.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lopcodes.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\loslib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lparser.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstate.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstring.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lstrlib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltable.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltablib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\ltm.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lundump.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lutf8lib.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lvm.c" />
+    <ClCompile Include="..\Library\Lua\Lua-5.3.4\srcThreadSafty\lzio.c" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

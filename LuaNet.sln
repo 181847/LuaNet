@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaSocket", "LuaSocket\LuaS
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua", "Lua\Lua.vcxproj", "{90FB3735-A8DD-4F61-859B-07AFA2B31936}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaProcess", "LuaProcess\LuaProcess.vcxproj", "{22A1D454-35C5-4AFC-B010-B8BE74AF0A1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{90FB3735-A8DD-4F61-859B-07AFA2B31936}.Release|x64.Build.0 = Release|x64
 		{90FB3735-A8DD-4F61-859B-07AFA2B31936}.Release|x86.ActiveCfg = Release|Win32
 		{90FB3735-A8DD-4F61-859B-07AFA2B31936}.Release|x86.Build.0 = Release|Win32
+		{22A1D454-35C5-4AFC-B010-B8BE74AF0A1A}.Debug|x64.ActiveCfg = Debug|x64
+		{22A1D454-35C5-4AFC-B010-B8BE74AF0A1A}.Debug|x64.Build.0 = Debug|x64
+		{22A1D454-35C5-4AFC-B010-B8BE74AF0A1A}.Debug|x86.ActiveCfg = Debug|Win32
+		{22A1D454-35C5-4AFC-B010-B8BE74AF0A1A}.Debug|x86.Build.0 = Debug|Win32
+		{22A1D454-35C5-4AFC-B010-B8BE74AF0A1A}.Release|x64.ActiveCfg = Release|x64
+		{22A1D454-35C5-4AFC-B010-B8BE74AF0A1A}.Release|x64.Build.0 = Release|x64
+		{22A1D454-35C5-4AFC-B010-B8BE74AF0A1A}.Release|x86.ActiveCfg = Release|Win32
+		{22A1D454-35C5-4AFC-B010-B8BE74AF0A1A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
