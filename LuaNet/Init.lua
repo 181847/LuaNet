@@ -2,6 +2,7 @@
 This script is used to config the interpretoer,
 such as adding the search patch.
 --]]
+print("Start Initialization")
 
 function DebugLogger(message, ...)
     print('----- DEBUG:', message, ...)
@@ -12,9 +13,15 @@ local function AddPath(path)
     package.path = package.path..";"..path
 end
 
-AddPath("D:\\GitHub\\Lua\\LoadAssets\\?.lua")
--- AddPath("D:\\GitHub\\Lua\\LoadAssets\\?.dll")
-AddPath(".\\luaScript\\?.lua")
+-- add path for the C module such as the dll
+local function AddCPath(path)
+    package.cpath = package.cpath..";"..path
+end
+
+-- print the key, value in a table
+function PrintTable(t)
+    for k, v in pairs(t) do print(k, v) end
+end
 
 -- store the original 'loadfile', replace it with loadfileInPath
 old_loadfile = loadfile
@@ -38,27 +45,7 @@ loadfile = function(filePath)
     end
 end
 
-luaSock = require("LuaSocket")
+print("Initialization Completed")
 
-luaSock.Family = {TCP = 2}
-luaSock.Type = {Stream = 1}
-luaSock.Protocol = {Unknown = 0}
 
-function luaSock.TCPSocket()
-    return luaSock.newSocket(luaSock.Family.TCP, luaSock.Type.Stream, luaSock.Protocol.Unknown)
 end
-
-
-print('Testing...')
-print('try to startup...')
-assert(luaSock.Startup(2, 2))
-print('startup success')
-
-print('try to cleanup...')
-assert(luaSock.Cleanup())
-print('cleanup success')
-print('Test end')
-
-print('Starup')
-assert(luaSock.Startup(2, 2))
-print('startup success')
