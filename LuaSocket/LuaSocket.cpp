@@ -322,6 +322,27 @@ int lua_NetDataToString(lua_State * L)
 	return 1;
 }
 
+int lua_fillNetData(lua_State * L)
+{
+	auto * pNetData = CHECK_USERDATA_NETDATA(L);
+	const char * pstr = luaL_checkstring(L, 2);
+	size_t len;
+	lua_tolstring(L, 2, &len);
+
+	if (len + 1 > pNetData->Length)
+	{
+		return doWhenFailed(L, "filling failed, the lenght of the string is greater than the NetData");
+	}
+	else
+	{
+		memcpy_s((void*)pNetData->Data, pNetData->Length, (void*)pstr, len + 1);
+		lua_pushboolean(L, true);
+		return 1;
+	}
+	
+	return 0;
+}
+
 int doWhenFailed(lua_State * L, const char * message)
 {
 

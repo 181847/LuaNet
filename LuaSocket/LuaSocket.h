@@ -88,7 +88,11 @@ static int lua_newNetData		(lua_State * L);
 // return the size of NetData
 static int lua_sizeOfNetData	(lua_State * L);
 
+// convert a string to a meshdata
 static int lua_NetDataToString	(lua_State * L);
+
+// fill a meshdata with the string
+static int lua_fillNetData		(lua_State * L);
 
 // THIS FUNCTION IS NOT IN THE LUA,
 // IT IS JUST USED IN THE C.
@@ -115,5 +119,6 @@ static const struct luaL_Reg LuaNetDataFunctions[] =
 {
 	{ "size",			lua_sizeOfNetData},
 	{ "toString",		lua_NetDataToString },
+	{ "fill",			lua_fillNetData },
 	{ NULL,				NULL }
 };
