@@ -47,5 +47,8 @@ end
 
 print("Initialization Completed")
 
+local startup = assert(loadfile("StartUpFile.lua"))
 
+if startup then
+    assert(startup())
 end
