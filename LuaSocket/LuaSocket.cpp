@@ -12,6 +12,7 @@ int LUASOCKET_API luaopen_LuaSocket(lua_State * L)
 	luaL_newmetatable(L, "Lua.Socket.Socket");
 	lua_pushvalue(L, -1);
 	lua_setfield(L, -2, "__index");
+	luaL_setfuncs(L, LuaSocketMethods, 0);
 
 	// this for the addr_in object
 	luaL_newmetatable(L, "Lua.Socket.Address");
@@ -23,6 +24,8 @@ int LUASOCKET_API luaopen_LuaSocket(lua_State * L)
 	lua_pushvalue(L, -1);
 	lua_setfield(L, -2, "__index");
 	luaL_setfuncs(L, LuaNetDataFunctions, 0);
+
+	registeUserdataType(L, "Lua.Socket.IPData");
 
 	// family table
 	lua_newtable(L);
@@ -359,6 +362,34 @@ int lua_recvfrom(lua_State * L)
 	return 0;
 }
 
+int lua_recvAll(lua_State * L)
+{
+	auto * psocket = CHECK_USERDATA_SOCKET(L);
+	DWORD dwValue = 1;
+	int error = ioctlsocket(*psocket, SIO_RCVALL, &dwValue);
+	if (error)
+	{
+		return doWhenFailed(L, "set socket to recieve all package failed");
+	}
+	else
+	{
+		lua_pushboolean(L, true);
+		return 1;
+	}
+}
+
+int lua_newIPData(lua_State * L)
+{
+	auto * pnetdata = CHECK_USERDATA_NETDATA(L);
+	size_t dataSize = NetData::Size(pnetdata->Length);
+
+	auto * pnewData = newUserdataInStack<IPData>(L, "Lua.Socket.IPData", dataSize);
+	// copy the memory
+	memcpy_s((void*)pnewData, dataSize, (void*)pnetdata, dataSize);
+
+	return 1;
+}
+
 int lua_newNetData(lua_State * L)
 {
 	size_t length = 0;
@@ -382,7 +413,7 @@ int lua_newNetData(lua_State * L)
 	}
 
 	auto * pNetData =
-		reinterpret_cast<NetData*>(lua_newuserdata(L, LENGTH_OF_NETDATA(length)));
+		reinterpret_cast<NetData*>(lua_newuserdata(L, NetData::Size(length)));
 	pNetData->Length = length;
 
 	// initialization
@@ -431,6 +462,12 @@ int lua_fillNetData(lua_State * L)
 		return 1;
 	}
 	
+	return 0;
+}
+
+int lua_showInHexData(lua_State * L)
+{
+	//if (lua_typename)
 	return 0;
 }
 

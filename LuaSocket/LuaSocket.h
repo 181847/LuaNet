@@ -46,6 +46,14 @@ extern "C"
 #define CHECK_USERDATA_NETDATA_INDEX(L, index)\
 	(reinterpret_cast<NetData*>(luaL_checkudata(L, index, "Lua.Socket.NetData")))
 
+// get ipdata by userdata
+#define CHECK_USERDATA_IPDATA(L)\
+	(reinterpret_cast<IPData*>(luaL_checkudata(L, 1, "Lua.Socket.IPData")))
+
+// get ipdata by userdata
+#define CHECK_USERDATA_IPDATA_INDEX(L, index)\
+	(reinterpret_cast<IPData*>(luaL_checkudata(L, index, "Lua.Socket.IPData")))
+
 // to call WSAStartup()
 static int lua_Startup		(lua_State * L);
 
@@ -87,7 +95,10 @@ static int lua_sendto		(lua_State * L);
 // receive data
 static int lua_recvfrom		(lua_State * L);
 
-// *********************************  NetData ********************************8
+// set the socket to receive all ip package
+static int lua_recvAll		(lua_State * L);
+
+// *********************************  NetData ********************************
 // create a NetData
 static int lua_newNetData		(lua_State * L);
 
@@ -99,6 +110,19 @@ static int lua_NetDataToString	(lua_State * L);
 
 // fill a meshdata with the string
 static int lua_fillNetData		(lua_State * L);
+
+// print the data in hex type
+static int lua_showInHexData	(lua_State * L);
+
+
+// *********************************  IPParser ********************************
+// create a IPParser to get or set data in a NetData
+// here must pass a NetData in and the Parser will copy
+// the memory.
+static int lua_newIPData(lua_State * L);
+
+// return the ip address of the ippackage
+static int lua_IPDataSourceIP	(lua_State * L);
 
 // THIS FUNCTION IS NOT IN THE LUA,
 // IT IS JUST USED IN THE C.
@@ -120,6 +144,8 @@ static const struct luaL_Reg LuaSocketLib[] =
 	{ "recv",			lua_recv},
 	{ "sendto",			lua_sendto },
 	{ "recvfrom",		lua_recvfrom },
+	{ "receiveAll",		lua_recvAll },
+	{ "newIPData",		lua_newIPData },
 	{ NULL,				NULL}
 };
 
@@ -128,5 +154,19 @@ static const struct luaL_Reg LuaNetDataFunctions[] =
 	{ "size",			lua_sizeOfNetData},
 	{ "toString",		lua_NetDataToString },
 	{ "fill",			lua_fillNetData },
+	{ NULL,				NULL }
+};
+
+
+static const struct luaL_Reg LuaSocketMethods[] =
+{
+	{ "__gc",			lua_closeSocket },
+	{ NULL,				NULL }
+};
+
+
+static const struct luaL_Reg LuaIPParserMethods[] =
+{
+	{ "SourceIP",		lua_IPDataSourceIP },
 	{ NULL,				NULL }
 };
