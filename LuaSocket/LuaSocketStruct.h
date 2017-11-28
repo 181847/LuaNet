@@ -6,7 +6,7 @@
 #include <WinSock2.h>
 #include <WS2tcpip.h>
 
-#pragma comment (lib, "WS2_32.lib")
+#pragma comment (lib, "ws2_32.lib")
 
 // NetData is a Data that is used to contain the data from the net,
 // and additional information about the data,
