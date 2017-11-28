@@ -25,7 +25,7 @@ int LUASOCKET_API luaopen_LuaSocket(lua_State * L)
 	lua_setfield(L, -2, "__index");
 	luaL_setfuncs(L, LuaNetDataFunctions, 0);
 
-	registeUserdataType(L, "Lua.Socket.IPData");
+	registeUserdataType(L, "Lua.Socket.IPData", LuaIPDataMethods);
 
 	// family table
 	lua_newtable(L);
@@ -48,15 +48,18 @@ int LUASOCKET_API luaopen_LuaSocket(lua_State * L)
 	// TCP
 	lua_pushinteger(L, IPPROTO_TCP);
 	lua_setfield(L, -2, "TCP");
-	// TCP
+	// UDP
 	lua_pushinteger(L, IPPROTO_UDP);
 	lua_setfield(L, -2, "UDP");
-	// TCP
+	// RAW
 	lua_pushinteger(L, IPPROTO_RAW);
 	lua_setfield(L, -2, "RAW");
-	// TCP
+	// ICMP
 	lua_pushinteger(L, IPPROTO_ICMP);
 	lua_setfield(L, -2, "ICMP");
+	// ICMP
+	lua_pushinteger(L, IPPROTO_NONE);
+	lua_setfield(L, -2, "NONE");
 
 	luaL_newlib(L, LuaSocketLib);
 
@@ -366,10 +369,22 @@ int lua_recvAll(lua_State * L)
 {
 	auto * psocket = CHECK_USERDATA_SOCKET(L);
 	DWORD dwValue = 1;
-	int error = ioctlsocket(*psocket, SIO_RCVALL, &dwValue);
-	if (error)
+	int error;
+	// leave the ip head to the user
+	int flag = 1;
+	error = setsockopt(*psocket, IPPROTO_IP, IP_HDRINCL,
+		(char*)&flag, sizeof(flag));
+
+	if (error == SOCKET_ERROR)
 	{
 		return doWhenFailed(L, "set socket to recieve all package failed");
+	}
+
+	error = ioctlsocket(*psocket, SIO_RCVALL, &dwValue);
+
+	if (error == SOCKET_ERROR)
+	{
+		return doWhenFailed(L, "set socket to recieve all  failed");
 	}
 	else
 	{
@@ -388,6 +403,34 @@ int lua_newIPData(lua_State * L)
 	memcpy_s((void*)pnewData, dataSize, (void*)pnetdata, dataSize);
 
 	return 1;
+}
+
+int lua_IPDataSourceIP(lua_State * L)
+{
+	auto * ipdata = CHECK_USERDATA_IPDATA(L);
+	Formater<128> buffer;
+	if (nullptr == inet_ntop(AF_INET, (void*)&(ipdata->ipPackage.SourceIP), buffer.bufferPointer(), 128))
+	{
+		return doWhenFailed(L, "convert ip address failed, cannot return the ipaddress");
+	}
+	lua_pushstring(L, buffer.bufferPointer());
+	return 1;
+}
+
+int lua_IPDataSetSourceIP(lua_State * L)
+{
+	auto * pipdata = CHECK_USERDATA_IPDATA(L);
+	size_t len;
+	const char * ipaddress = lua_tolstring(L, 2, &len);
+	if (0 == inet_pton(AF_INET, ipaddress, (void*)&pipdata->ipPackage.SourceIP))
+	{
+		return doWhenFailed(L, "cannot convert the string to ipaddress");
+	}
+	else 
+	{
+		lua_pushboolean(L, true);
+		return 1;
+	}
 }
 
 int lua_newNetData(lua_State * L)
