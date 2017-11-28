@@ -1,5 +1,7 @@
 //     Copyright   (C)   Microsoft   Corporation,   1996-1999 
 
+#include <WinSock2.h>
+
 #ifndef   MSTCPIPH 
 
 #define   MSTCPIPH 
