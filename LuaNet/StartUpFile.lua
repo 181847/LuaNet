@@ -29,6 +29,14 @@ function LuaSocket.UDPSocket()
                                 LuaSocket.Protocal.UDP))
 end
 
+function LuaSocket.RawSocket()
+    return assert(
+        LuaSocket.newSocket(LuaSocket.Family.IPV4, 
+                            LuaSocket.Type.RAW, 
+                            0 ))
+end
+
+
 tsock = LuaSocket.TCPSocket()
 usock = LuaSocket.UDPSocket()
 
@@ -73,12 +81,13 @@ anotherThread = assert(LuaProcess.newThread(
                     return
                 end -- else
             end -- while
+            LuaSocket.closeSocket(usock2)
             gmtx:unlock()
         end )) -- assert (pcall( function(()
     end -- function
     )) -- end thread assert
 
-    
+print('\n start another thread')
 anotherThread.SysThread:resume()
 gmtx:unlock()
 
@@ -92,15 +101,45 @@ else
     print('send success')
     print('length:', success)
 end
+LuaSocket.closeSocket(usock1)
 
-print('\n start another thread')
+gmtx:lock()
 
 
 assert(LuaSocket.Cleanup())
+assert(LuaSocket.Startup(2,2))
 
 print('\n\ntest luaIPParser')
 ipdata = assert(LuaSocket.newIPData(LuaSocket.newNetData(45)))
 print(ipdata)
+print('sourceIP is:', ipdata:sourceIP())
+print('set sourceip')
+ipdata:setSourceIP("127.0.0.1")
+print('sourceIP is:', ipdata:sourceIP())
+
+
+
+print('\n\ntest ip sniffer')
+rawSocket = LuaSocket.RawSocket()
+rawAddress = assert(LuaSocket.newAddress('10.3.7.235', 8200))
+assert(LuaSocket.bind(rawSocket, rawAddress))
+scs, msg, code = rawSocket:recvAll()
+if not scs then
+    print(msg, code)
+end
+
+
+rawNetData = LuaSocket.newNetData(65535)
+for count = 1, 200 do
+    print('start recv')
+    scs, msg, code = LuaSocket.recv(rawSocket, rawNetData)
+    if not scs then
+        print(msg, code)
+    end
+    ipdata = LuaSocket.newIPData(rawNetData)
+    print('count '..count, 'sourceIP:', ipdata:sourceIP())
+end
+
 
 
 return true
