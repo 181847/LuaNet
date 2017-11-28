@@ -8,7 +8,6 @@ extern "C"
 #endif
 int LUASOCKET_API luaopen_LuaSocket(lua_State * L)
 {
-
 	// this for the socket object
 	luaL_newmetatable(L, "Lua.Socket.Socket");
 	lua_pushvalue(L, -1);
@@ -25,7 +24,51 @@ int LUASOCKET_API luaopen_LuaSocket(lua_State * L)
 	lua_setfield(L, -2, "__index");
 	luaL_setfuncs(L, LuaNetDataFunctions, 0);
 
+	// family table
+	lua_newtable(L);
+	// IPV4
+	lua_pushinteger(L, AF_INET);
+	lua_setfield(L, -2, "IPV4");
+
+	// type table
+	lua_newtable(L);
+	// RAW TYPE
+	lua_pushinteger(L, SOCK_RAW);
+	lua_setfield(L, -2, "RAW");
+	lua_pushinteger(L, SOCK_STREAM);
+	lua_setfield(L, -2, "TCP");
+	lua_pushinteger(L, SOCK_DGRAM);
+	lua_setfield(L, -2, "UDP");
+	
+	// protocal table
+	lua_newtable(L);
+	// TCP
+	lua_pushinteger(L, IPPROTO_TCP);
+	lua_setfield(L, -2, "TCP");
+	// TCP
+	lua_pushinteger(L, IPPROTO_UDP);
+	lua_setfield(L, -2, "UDP");
+	// TCP
+	lua_pushinteger(L, IPPROTO_RAW);
+	lua_setfield(L, -2, "RAW");
+	// TCP
+	lua_pushinteger(L, IPPROTO_ICMP);
+	lua_setfield(L, -2, "ICMP");
+
 	luaL_newlib(L, LuaSocketLib);
+
+	// the stack state
+	// top -->	lib
+	//			protocal table
+	//			type table
+	//			family table
+	//			......
+	lua_pushvalue(L, -4);
+	lua_setfield(L, -2, "Family");
+	lua_pushvalue(L, -3);
+	lua_setfield(L, -2, "Type");
+	lua_pushvalue(L, -2);
+	lua_setfield(L, -2, "Protocal");
 	return 1;
 }
 #ifdef __cplusplus
@@ -143,7 +186,7 @@ int lua_bind(lua_State * L)
 
 	int error = bind(*pSocket, reinterpret_cast<sockaddr*>(pAddress), sizeof(SOCKADDR_IN));
 	
-	if (error)
+	if (error == SOCKET_ERROR)
 	{
 		return doWhenFailed(L, "Bind Failed");
 	}
@@ -264,10 +307,56 @@ int lua_recv(lua_State * L)
 	else
 	{
 		lua_pushinteger(L, rLen);
-
+		// put a zero at the end of the data
 		pNetData->Data[rLen] = 0;
 		return 1;
 	}
+}
+
+int lua_sendto(lua_State * L)
+{
+	auto * pSocket	= CHECK_USERDATA_SOCKET_INDEX(L, 1);
+	auto * pNetData = CHECK_USERDATA_NETDATA_INDEX(L, 2);
+	auto * pAddress = CHECK_USERDATA_ADDRESS_INDEX(L, 3);
+
+	int lSend = sendto(*pSocket,
+		reinterpret_cast<const char *>(pNetData->Data), pNetData->Length, 0,
+		reinterpret_cast<SOCKADDR*>(pAddress), sizeof(SOCKADDR));
+
+	if (lSend == SOCKET_ERROR)
+	{
+		return doWhenFailed(L, "sendto failed");
+	}
+	else
+	{
+		lua_pushinteger(L, lSend);
+		return 1;
+	}
+	return 0;
+}
+
+int lua_recvfrom(lua_State * L)
+{
+	auto * pSocket = CHECK_USERDATA_SOCKET_INDEX(L, 1);
+	auto * pNetData = CHECK_USERDATA_NETDATA_INDEX(L, 2);
+	auto * pAddress = CHECK_USERDATA_ADDRESS_INDEX(L, 3);
+
+	int iLen = sizeof(SOCKADDR);
+	int lRecv = recvfrom(*pSocket, 
+		reinterpret_cast<char *>(pNetData->Data), pNetData->Length - 1, 0,
+		reinterpret_cast<SOCKADDR*>(pAddress), &iLen);
+
+	if (lRecv == SOCKET_ERROR)
+	{
+		return doWhenFailed(L, "recvfrom failed");
+	}
+	else
+	{
+		lua_pushinteger(L, lRecv);
+		pNetData->Data[lRecv] = 0;
+		return 1;
+	}
+	return 0;
 }
 
 int lua_newNetData(lua_State * L)
@@ -318,7 +407,9 @@ int lua_sizeOfNetData(lua_State * L)
 int lua_NetDataToString(lua_State * L)
 {
 	auto * pNetData = CHECK_USERDATA_NETDATA(L);
-	lua_pushstring(L, reinterpret_cast<const char *>(pNetData->Data));
+	char buffer[63555];
+	strcpy_s(buffer, (char*)pNetData->Data);
+	lua_pushstring(L, reinterpret_cast<const char *>(buffer));
 	return 1;
 }
 
