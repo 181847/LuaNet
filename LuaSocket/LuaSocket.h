@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Library/MyTools/LuaTools.h"
+#include "../Library/MyTools/Formater.h"
 #include "LuaSocketStruct.h"
 
 #pragma comment(lib, "Lua.lib")
@@ -124,6 +125,9 @@ static int lua_newIPData(lua_State * L);
 // return the ip address of the ippackage
 static int lua_IPDataSourceIP	(lua_State * L);
 
+// return the ip address of the ippackage
+static int lua_IPDataSetSourceIP(lua_State * L);
+
 // THIS FUNCTION IS NOT IN THE LUA,
 // IT IS JUST USED IN THE C.
 static int doWhenFailed(lua_State *L, const char * message);
@@ -144,7 +148,6 @@ static const struct luaL_Reg LuaSocketLib[] =
 	{ "recv",			lua_recv},
 	{ "sendto",			lua_sendto },
 	{ "recvfrom",		lua_recvfrom },
-	{ "receiveAll",		lua_recvAll },
 	{ "newIPData",		lua_newIPData },
 	{ NULL,				NULL}
 };
@@ -160,13 +163,15 @@ static const struct luaL_Reg LuaNetDataFunctions[] =
 
 static const struct luaL_Reg LuaSocketMethods[] =
 {
+	{ "recvAll",		lua_recvAll },
 	{ "__gc",			lua_closeSocket },
 	{ NULL,				NULL }
 };
 
 
-static const struct luaL_Reg LuaIPParserMethods[] =
+static const struct luaL_Reg LuaIPDataMethods[] =
 {
-	{ "SourceIP",		lua_IPDataSourceIP },
+	{ "sourceIP",		lua_IPDataSourceIP },
+	{ "setSourceIP",	lua_IPDataSetSourceIP },
 	{ NULL,				NULL }
 };
