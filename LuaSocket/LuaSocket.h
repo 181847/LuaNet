@@ -81,6 +81,12 @@ static int lua_send			(lua_State * L);
 // receive data
 static int lua_recv			(lua_State * L);
 
+// send data.
+static int lua_sendto		(lua_State * L);
+
+// receive data
+static int lua_recvfrom		(lua_State * L);
+
 // *********************************  NetData ********************************8
 // create a NetData
 static int lua_newNetData		(lua_State * L);
@@ -112,6 +118,8 @@ static const struct luaL_Reg LuaSocketLib[] =
 	{ "connect",		lua_connect },
 	{ "send",			lua_send },
 	{ "recv",			lua_recv},
+	{ "sendto",			lua_sendto },
+	{ "recvfrom",		lua_recvfrom },
 	{ NULL,				NULL}
 };
 
