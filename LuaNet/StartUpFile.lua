@@ -98,4 +98,9 @@ print('\n start another thread')
 
 assert(LuaSocket.Cleanup())
 
+print('\n\ntest luaIPParser')
+ipdata = assert(LuaSocket.newIPData(LuaSocket.newNetData(45)))
+print(ipdata)
+
+
 return true
