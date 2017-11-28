@@ -31,10 +31,12 @@ inline void registeUserdataType(lua_State * L, const char * metatable,
 
 // create a specific userdatatype in the lua_State
 template<typename USERDATATYPE>
-inline USERDATATYPE* newUserdataInStack(lua_State * L, const char * metatable = nullptr)
+inline USERDATATYPE* newUserdataInStack(
+	lua_State * L, const char * metatable = nullptr,
+	size_t desiredSize = sizeof(USERDATATYPE)) // default the size is the size of USERDATATYPE
 {
 	auto * puserdata = reinterpret_cast<USERDATATYPE *>(
-		lua_newuserdata(L, sizeof(USERDATATYPE)));
+		lua_newuserdata(L, desiredSize));
 
 	if (metatable)
 	{
