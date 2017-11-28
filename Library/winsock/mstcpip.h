@@ -16,7 +16,7 @@
 
 /*   Argument   structure   for   SIO_KEEPALIVE_VALS   */
 
-
+typedef unsigned long u_long;
 
 struct   tcp_keepalive {
 
